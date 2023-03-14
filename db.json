@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "points": "100"
+    },
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "points": "200"
+    },
+    {
+      "id": 3,
+      "name": "John Smith",
+      "points": "300"
+    }
+  ],
+
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "correctAnswer": "Paris",
+      "answers": ["Paris", "London", "Berlin", "Rome"]
+    },
+    {
+      "id": 2,
+      "category": "Geography",
+      "question": "Where would you find the city of Skopje?",
+      "correctAnswer": "Macedonia",
+      "answers": ["London", "France", "Greece", "Macedonia"]
+    },
+    {
+      "id": 3,
+      "category": "Movies",
+      "question": "Which director directed Batman Begins?",
+      "correctAnswer": "Christopher Nolan",
+      "answers": [
+        "Christopher Nolan",
+        "Steven Spielberg",
+        "Quentin Tarantino",
+        "James Cameron"
+      ]
+    },
+    {
+      "id": 4,
+      "category": "Music",
+      "question": "Which Australian hard rock band released the studio album 'Back in Black'?",
+      "correctAnswer": "AC/DC",
+      "answers": ["AC/DC", "Metallica", "Guns N' Roses", "Bon Jovi"]
+    },
+    {
+      "id": 5,
+      "category": "Science",
+      "question": "What is the chemical formula for water?",
+      "correctAnswer": "H2O",
+      "answers": ["H2O", "CO2", "CH4", "NH3"]
+    },
+    {
+      "id": 6,
+      "category": "Geography",
+      "question": "What is the second largest state in the USA?",
+      "correctAnswer": "Texas",
+      "answers": ["California", "Texas", "New York", "Florida"]
+    }
+  ]
+}
