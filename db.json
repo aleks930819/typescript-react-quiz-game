@@ -3,17 +3,17 @@
     {
       "id": 1,
       "name": "John Doe",
-      "points": "100"
+      "maxScore": "100"
     },
     {
       "id": 2,
       "name": "Jane Doe",
-      "points": "200"
+      "maxScore": "200"
     },
     {
       "id": 3,
       "name": "John Smith",
-      "points": "300"
+      "maxScore": "300"
     }
   ],
 

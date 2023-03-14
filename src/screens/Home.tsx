@@ -1,4 +1,4 @@
-import Ranking from '../components/Ranking';
+import Ranking from '../components/Ranking/Ranking';
 import Button from '../components/UI/Button';
 
 const Home = () => {
