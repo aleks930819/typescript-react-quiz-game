@@ -1,10 +1,11 @@
 import Ranking from '../components/Ranking';
+import Button from '../components/UI/Button';
 
 const Home = () => {
   return (
     <div className="text-primary text-3xl flex justify-center items-center mx-auto h-screen gap-20">
       <div className="">
-        <h1>Start Game</h1>
+        <Button to="/game">Start Game</Button>
       </div>
       <Ranking />
     </div>
