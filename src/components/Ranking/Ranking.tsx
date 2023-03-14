@@ -18,7 +18,7 @@ const data = [
 
 const Ranking = () => {
   return (
-    <div className="flex flex-col items-center border w-[400px] h-[300px] rounded-lg">
+    <div className="flex flex-col items-center border w-[400px] h-[300px] rounded-lg bg-secondary">
       <h1 className="text-2xl font-bold mb-10 mt-10">Top 3 Players</h1>
       <div className="flex flex-col items-center gap-5 mb-10">
         {data.map((item, i) => (

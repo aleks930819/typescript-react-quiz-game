@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import { Link } from 'react-router-dom';
 import React from 'react';
 import className from 'classnames';
@@ -5,15 +7,31 @@ import className from 'classnames';
 interface ButtonProps {
   children: React.ReactNode;
   game?: boolean;
+  correct?: boolean;
+  wrong?: boolean;
+  form?: boolean;
   to?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, game, to }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  game,
+  correct,
+  wrong,
+  form,
+  to,
+  onClick,
+}) => {
   const classes = className(
-    'bg-primary text-black flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-200 transition duration-200 ease-in-out ',
+    'flex items-center justify-center gap-2 rounded-lg  transition duration-200 ease-in-out ',
     {
-      'border w-screen h-auto sm:w-[40vw] sm:h-[10vh] rounded-lg flex items-center justify-center bg-secondary text-primary hover:bg-gray-200 hover:text-black':
+      'bg-secondary border w-screen h-auto sm:w-[40vw] sm:h-[10vh] rounded-lg flex items-center justify-center  text-primary hover:bg-gray-200 hover:text-black px-4 py-2 ':
         game,
+
+      'bg-red-600 border-none': wrong,
+      'bg-green-600 border-none': correct,
+      'border text-primary px-10 py-5 bg-secondary ': form,
     }
   );
 
@@ -26,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({ children, game, to }) => {
   }
 
   return (
-    <button className={classes} type="button">
+    <button className={classes} type="button" onClick={onClick}>
       {children}
     </button>
   );

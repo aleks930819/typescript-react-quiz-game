@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import QuestionHeader from '../components/Questions/QuestionHeader';
 import QuestionsBox from '../components/Questions/QuestionsBox';
 import QuestionsContainer from '../components/Questions/QuestionsContainer';
+import Spinner from '../components/UI/Spinner';
 
 interface AnswerObject {
   id: number;
@@ -13,6 +14,10 @@ interface AnswerObject {
 
 const Game = () => {
   const [questions, setQuestions] = useState<AnswerObject[]>([]);
+  const [score, setScore] = useState<number>(0);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [questionNumber, setQuestionNumber] = useState<number>(1);
+  const [userAnswer, setUserAnswer] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -38,11 +43,21 @@ const Game = () => {
     };
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Spinner />;
   return (
     <QuestionsContainer>
-      <QuestionHeader question={questions[0]?.question} />
-      <QuestionsBox answers={questions[0]?.answers} />
+      <QuestionHeader
+        question={questions[currentQuestion]?.question}
+        score={score}
+        currentQuestion={currentQuestion}
+      />
+      <QuestionsBox
+        answers={questions[currentQuestion]?.answers}
+        correctAnswer={questions[currentQuestion]?.correctAnswer}
+        setUserAnswer={setUserAnswer}
+        setCurrentQuestion={setCurrentQuestion}
+        setScore={setScore}
+      />
     </QuestionsContainer>
   );
 };
