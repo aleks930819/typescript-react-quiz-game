@@ -38,12 +38,11 @@ const Game = () => {
     };
   }, []);
 
-  console.log(questions);
-
+  if (loading) return <h1>Loading...</h1>;
   return (
     <QuestionsContainer>
-      <QuestionHeader />
-      <QuestionsBox />
+      <QuestionHeader question={questions[0]?.question} />
+      <QuestionsBox answers={questions[0]?.answers} />
     </QuestionsContainer>
   );
 };
