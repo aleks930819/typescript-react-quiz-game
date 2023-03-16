@@ -3,6 +3,7 @@ import QuestionHeader from '../components/Questions/QuestionHeader';
 import QuestionsBox from '../components/Questions/QuestionsBox';
 import QuestionsContainer from '../components/Questions/QuestionsContainer';
 import Spinner from '../components/UI/Spinner';
+import GameOver from '../components/GameOver/GameOver';
 
 interface AnswerObject {
   id: number;
@@ -19,6 +20,7 @@ const Game = () => {
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   useEffect(() => {
     let mounted = true;
@@ -32,6 +34,7 @@ const Game = () => {
           setQuestions(data);
           setLoading(false);
         }
+        return data as AnswerObject;
       };
       fetchQuestions();
     } catch (err) {
@@ -43,22 +46,34 @@ const Game = () => {
     };
   }, []);
 
+  const resetGameHandler = () => {
+    setScore(0);
+    setCurrentQuestion(0);
+    setQuestionNumber(1);
+    setUserAnswer('');
+    setGameOver(false);
+  };
+
   if (loading) return <Spinner />;
   return (
-    <QuestionsContainer>
-      <QuestionHeader
-        question={questions[currentQuestion]?.question}
-        score={score}
-        currentQuestion={currentQuestion}
-      />
-      <QuestionsBox
-        answers={questions[currentQuestion]?.answers}
-        correctAnswer={questions[currentQuestion]?.correctAnswer}
-        setUserAnswer={setUserAnswer}
-        setCurrentQuestion={setCurrentQuestion}
-        setScore={setScore}
-      />
-    </QuestionsContainer>
+    <>
+      {gameOver && <GameOver resetGameHandler={resetGameHandler} />}
+      <QuestionsContainer>
+        <QuestionHeader
+          question={questions[currentQuestion]?.question}
+          score={score}
+          currentQuestion={currentQuestion}
+        />
+        <QuestionsBox
+          answers={questions[currentQuestion]?.answers}
+          correctAnswer={questions[currentQuestion]?.correctAnswer}
+          setUserAnswer={setUserAnswer}
+          setCurrentQuestion={setCurrentQuestion}
+          setScore={setScore}
+          setGameOver={setGameOver}
+        />
+      </QuestionsContainer>
+    </>
   );
 };
 

@@ -1,10 +1,14 @@
-import Button from '../components/UI/Button';
+import Button from '../UI/Button';
 
-const GameOver = () => {
+interface GameOverProps {
+  resetGameHandler: () => void;
+}
+
+const GameOver = ({ resetGameHandler }: GameOverProps) => {
   return (
     <div className="flex flex-col justify-center items-center mx-auto h-screen text-primary text-3xl ">
       <h1 className="pb-5">Game Over</h1>
-      <Button to="/game" form>
+      <Button form onClick={resetGameHandler}>
         Play Again
       </Button>
     </div>
