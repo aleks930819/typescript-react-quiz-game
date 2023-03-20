@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Button from '../UI/Button';
 
 interface GameOverProps {

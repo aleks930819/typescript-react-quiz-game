@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Button from '../UI/Button';
 
 interface QuestionsBoxProps {
   answers: string[];
   correctAnswer: string;
-  setUserAnswer: (answer: string) => void;
-  setCurrentQuestion: (question: number) => void;
-  setScore: (score: number) => void;
-  setGameOver: (gameOver: boolean) => void;
+  setUserAnswer: Dispatch<SetStateAction<string>>;
+  setCurrentQuestion: Dispatch<SetStateAction<number>>;
+  setScore: Dispatch<SetStateAction<number>>;
+  setGameOver: Dispatch<SetStateAction<boolean>>;
 }
 
 const QuestionsBox: React.FC<QuestionsBoxProps> = ({
@@ -51,13 +51,7 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   return (
     <div className="grid  sm:grid-cols-2 gap-10 mt-10 ">
       {answers?.map((answer) => (
-        <Button
-          game
-          key={answer}
-          onClick={() => clickHandler(answer)}
-          correct={isCorrectAnswer && answer === correctAnswer}
-          wrong={!isCorrectAnswer && answer !== correctAnswer}
-        >
+        <Button game key={answer} onClick={() => clickHandler(answer)}>
           {answer}
         </Button>
       ))}

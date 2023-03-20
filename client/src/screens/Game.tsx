@@ -28,7 +28,7 @@ const Game: React.FC = () => {
     try {
       setLoading(true);
       const fetchQuestions = async () => {
-        const response = await fetch('http://localhost:7000/api/v1/questions');
+        const response = await fetch('http://localhost:3030/api/v1/questions');
         const data = await response.json();
         if (!mounted) {
           setQuestions(data);
@@ -55,6 +55,7 @@ const Game: React.FC = () => {
   };
 
   if (loading) return <Spinner />;
+
   return (
     <>
       {gameOver && <GameOver resetGameHandler={resetGameHandler} />}

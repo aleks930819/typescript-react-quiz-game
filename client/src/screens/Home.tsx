@@ -1,4 +1,3 @@
-import Ranking from '../components/Ranking/Ranking';
 import Button from '../components/UI/Button';
 
 const Home = () => {
@@ -8,14 +7,7 @@ const Home = () => {
         <Button to="/game" form>
           Start Game
         </Button>
-        <Button to="/signin" form>
-          Sign In
-        </Button>
-        <Button to="/signup" form>
-          Sign Up
-        </Button>
       </div>
-      <Ranking />
     </div>
   );
 };

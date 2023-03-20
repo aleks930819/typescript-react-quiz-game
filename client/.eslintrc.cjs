@@ -19,6 +19,7 @@ module.exports = {
     project: './tsconfig.json',
     singleQuote: true,
     parser: 'flow',
+    tsconfigRootDir: __dirname,
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
