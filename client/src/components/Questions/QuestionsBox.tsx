@@ -18,26 +18,28 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   setScore,
   setGameOver,
 }) => {
-  const [isCorrectAnswer, setIsCorrectAnswer] = React.useState<string>('');
+  const [isCorrectAnswer, setIsCorrectAnswer] = React.useState<boolean | null>(
+    null
+  );
 
   const correctAnswerHandler = () => {
     setTimeout(() => {
-      setCurrentQuestion((prev: number) => prev + 1);
+      setCurrentQuestion((prev) => prev + 1);
       setScore((prev: number) => prev + 100);
-      setIsCorrectAnswer('');
+      setIsCorrectAnswer(null);
     }, 1000);
   };
 
   const incorrectAnswerHandler = () => {
     setTimeout(() => {
-      setIsCorrectAnswer('');
+      setIsCorrectAnswer(null);
       setGameOver(true);
     }, 1000);
   };
 
   const clickHandler = (answer: string) => {
     setUserAnswer(answer === correctAnswer ? 'correct' : 'wrong');
-    setIsCorrectAnswer(answer === correctAnswer ? 'correct' : 'wrong');
+    setIsCorrectAnswer(answer === correctAnswer);
 
     if (answer === correctAnswer) {
       correctAnswerHandler();
@@ -53,8 +55,8 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
           game
           key={answer}
           onClick={() => clickHandler(answer)}
-          correct={isCorrectAnswer === 'correct' && answer === correctAnswer}
-          wrong={isCorrectAnswer === 'wrong' && answer !== correctAnswer}
+          correct={isCorrectAnswer && answer === correctAnswer}
+          wrong={!isCorrectAnswer && answer !== correctAnswer}
         >
           {answer}
         </Button>

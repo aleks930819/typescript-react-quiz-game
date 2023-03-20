@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QuestionHeader from '../components/Questions/QuestionHeader';
 import QuestionsBox from '../components/Questions/QuestionsBox';
 import QuestionsContainer from '../components/Questions/QuestionsContainer';
@@ -13,10 +13,10 @@ interface AnswerObject {
   category: string;
 }
 
-const Game = () => {
+const Game: React.FC = () => {
   const [questions, setQuestions] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState<number>(0);
-  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [userAnswer, setUserAnswer] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const Game = () => {
     try {
       setLoading(true);
       const fetchQuestions = async () => {
-        const response = await fetch('http://localhost:3005/questions');
+        const response = await fetch('http://localhost:7000/api/v1/questions');
         const data = await response.json();
         if (!mounted) {
           setQuestions(data);
