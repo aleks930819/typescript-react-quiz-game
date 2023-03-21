@@ -5,17 +5,23 @@ import QuestionsContainer from '../components/Questions/QuestionsContainer';
 import Spinner from '../components/UI/Spinner';
 import GameOver from '../components/GameOver/GameOver';
 import useFetch from '../hooks/useFetch';
+import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 
 const Game: React.FC = () => {
   const [score, setScore] = useState<number>(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameOver, setGameOver] = useState<boolean>(false);
 
-  const { data: questions, loading, error, fetchData } = useFetch();
+  const {
+    data: questions,
+    loading,
+    error,
+    refetch,
+  } = useFetch('http://localhost:3030/api/v1/questions');
 
   useEffect(() => {
-    fetchData('http://localhost:3030/api/v1/questions');
-  }, [fetchData]);
+    refetch();
+  }, [refetch]);
 
   const resetGameHandler = useCallback(() => {
     setScore(0);
@@ -24,6 +30,7 @@ const Game: React.FC = () => {
   }, []);
 
   if (loading) return <Spinner />;
+  if (error) return <ErrorMessage message={error.message} />;
 
   return (
     <>
