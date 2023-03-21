@@ -4,13 +4,13 @@
  * Data Model Interfaces
  */
 
-import { Question, Questions, QuestionWithAnswer } from './questions.interface';
+import { Questions, Question } from './questions.interface';
 
 /**
  * In-Memory Store
  */
 
-const questions: QuestionWithAnswer = {
+const questions: Question = {
   1: {
     id: 1,
     question: 'What is the capital of France?',

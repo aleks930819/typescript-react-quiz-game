@@ -4,7 +4,7 @@
 
 import express, { Request, Response } from 'express';
 import * as QuestionService from './questions.service';
-import { Question, Questions } from './questions.interface';
+import { Questions } from './questions.interface';
 
 /**
  * Router Definition
