@@ -9,6 +9,8 @@ interface ButtonProps {
   game?: boolean;
   form?: boolean;
   to?: string;
+  success?: boolean;
+  danger?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -17,6 +19,8 @@ const Button: React.FC<ButtonProps> = ({
   game,
   form,
   to,
+  success,
+  danger,
   onClick,
 }) => {
   const classes = className(
@@ -26,6 +30,8 @@ const Button: React.FC<ButtonProps> = ({
         game,
 
       'border text-primary px-10 py-5 bg-secondary ': form,
+      'bg-success text-white px-10 py-5 rounded-lg': success,
+      'bg-danger text-white px-10 py-5 rounded-lg': danger,
     }
   );
 

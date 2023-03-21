@@ -4,45 +4,18 @@ import QuestionsBox from '../components/Questions/QuestionsBox';
 import QuestionsContainer from '../components/Questions/QuestionsContainer';
 import Spinner from '../components/UI/Spinner';
 import GameOver from '../components/GameOver/GameOver';
-
-interface AnswerObject {
-  id: number;
-  question: string;
-  answers: string[];
-  correctAnswer: string;
-  category: string;
-}
+import useFetch from '../hooks/useFetch';
 
 const Game: React.FC = () => {
-  const [questions, setQuestions] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState<number>(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [loading, setLoading] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
 
+  const { data: questions, loading, error, fetchData } = useFetch();
+
   useEffect(() => {
-    let mounted = true;
-
-    try {
-      setLoading(true);
-      const fetchQuestions = async () => {
-        const response = await fetch('http://localhost:3030/api/v1/questions');
-        const data = await response.json();
-        if (!mounted) {
-          setQuestions(data);
-          setLoading(false);
-        }
-        return data as AnswerObject;
-      };
-      fetchQuestions();
-    } catch (err) {
-      console.log(err);
-    }
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    fetchData('http://localhost:3030/api/v1/questions');
+  }, [fetchData]);
 
   const resetGameHandler = useCallback(() => {
     setScore(0);

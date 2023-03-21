@@ -16,16 +16,23 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   setScore,
   setGameOver,
 }) => {
+  const [danger, setDanger] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+
   const correctAnswerHandler = () => {
+    setSuccess(true);
     setTimeout(() => {
       setCurrentQuestion((prev) => prev + 1);
       setScore((prev: number) => prev + 100);
+      setSuccess(false);
     }, 1000);
   };
 
   const incorrectAnswerHandler = () => {
+    setDanger(true);
     setTimeout(() => {
       setGameOver(true);
+      setDanger(false);
     }, 1000);
   };
 
@@ -40,7 +47,13 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   return (
     <div className="grid sm:grid-cols-2 gap-10 mt-10 ">
       {answers?.map((answer) => (
-        <Button game key={answer} onClick={() => answerHandler(answer)}>
+        <Button
+          game
+          key={answer}
+          onClick={() => answerHandler(answer)}
+          success={success}
+          danger={danger}
+        >
           {answer}
         </Button>
       ))}
