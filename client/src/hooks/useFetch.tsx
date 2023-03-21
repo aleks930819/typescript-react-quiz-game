@@ -12,10 +12,10 @@ interface UseFetchResult {
   data: AnswerObject[];
   loading: boolean;
   error: Error | null;
-  fetchData: (url: string) => Promise<AnswerObject>;
+  refetch: () => void;
 }
 
-const useFetch = (url: string) => {
+const useFetch = (url: string): UseFetchResult => {
   const [data, setData] = useState<AnswerObject[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
