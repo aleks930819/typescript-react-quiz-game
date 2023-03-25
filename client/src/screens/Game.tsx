@@ -33,23 +33,26 @@ const Game: React.FC = () => {
   if (error) return <ErrorMessage message={error.message} />;
 
   return (
-    <>
-      {gameOver && <GameOver resetGameHandler={resetGameHandler} />}
-      <QuestionsContainer>
-        <QuestionHeader
-          question={questions[currentQuestion]?.question}
-          score={score}
-          currentQuestion={currentQuestion}
-        />
-        <QuestionsBox
-          answers={questions[currentQuestion]?.answers}
-          correctAnswer={questions[currentQuestion]?.correctAnswer}
-          setCurrentQuestion={setCurrentQuestion}
-          setScore={setScore}
-          setGameOver={setGameOver}
-        />
-      </QuestionsContainer>
-    </>
+    <div>
+      {gameOver ? (
+        <GameOver score={score} resetGameHandler={resetGameHandler} />
+      ) : (
+        <QuestionsContainer>
+          <QuestionHeader
+            question={questions[currentQuestion]?.question}
+            score={score}
+            currentQuestion={currentQuestion}
+          />
+          <QuestionsBox
+            answers={questions[currentQuestion]?.answers}
+            correctAnswer={questions[currentQuestion]?.correctAnswer}
+            setCurrentQuestion={setCurrentQuestion}
+            setScore={setScore}
+            setGameOver={setGameOver}
+          />
+        </QuestionsContainer>
+      )}
+    </div>
   );
 };
 
