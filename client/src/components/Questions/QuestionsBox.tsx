@@ -1,7 +1,7 @@
 import React from 'react';
+import useSound from 'use-sound';
 import Button from '../UI/Button';
 import { GameContext, GameContextProps } from '../../context/GameContext';
-import useSound from 'use-sound';
 
 import correctSound from '../../assets/success.mp3';
 import incorrectSound from '../../assets/fail.mp3';
