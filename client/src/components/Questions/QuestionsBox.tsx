@@ -1,38 +1,30 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Button from '../UI/Button';
+import { GameContext, GameContextProps } from '../../context/GameContext';
 
 interface QuestionsBoxProps {
   answers: string[];
   correctAnswer: string;
-  setCurrentQuestion: Dispatch<SetStateAction<number>>;
-  setScore: Dispatch<SetStateAction<number>>;
-  setGameOver: Dispatch<SetStateAction<boolean>>;
 }
 
 const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   answers,
   correctAnswer,
-  setCurrentQuestion,
-  setScore,
-  setGameOver,
 }) => {
-  const [danger, setDanger] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+  const { setScore, setGameOver, setCurrentQuestion } = React.useContext(
+    GameContext
+  ) as GameContextProps;
 
   const correctAnswerHandler = () => {
-    setSuccess(true);
     setTimeout(() => {
       setCurrentQuestion((prev) => prev + 1);
       setScore((prev: number) => prev + 100);
-      setSuccess(false);
     }, 1000);
   };
 
   const incorrectAnswerHandler = () => {
-    setDanger(true);
     setTimeout(() => {
       setGameOver(true);
-      setDanger(false);
     }, 1000);
   };
 
@@ -47,13 +39,7 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   return (
     <div className="grid sm:grid-cols-2 gap-10 mt-10 ">
       {answers?.map((answer) => (
-        <Button
-          game
-          key={answer}
-          onClick={() => answerHandler(answer)}
-          success={success}
-          danger={danger}
-        >
+        <Button game key={answer} onClick={() => answerHandler(answer)}>
           {answer}
         </Button>
       ))}

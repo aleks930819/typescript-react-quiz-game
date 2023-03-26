@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface Props {
+interface ErrorMessageProps {
   message: string;
 }
 
-const ErrorMessage = ({ message }: Props) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return (
     <div className="flex justify-center items-center h-screen">
       <p className="text-2xl text-red-500">{message}</p>

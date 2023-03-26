@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   const classes = className(
-    'flex items-center justify-center gap-2 rounded-lg  transition duration-200 ease-in-out ',
+    'flex items-center justify-center gap-2 rounded-lg  transition duration-200 ease-in-out',
     {
       'bg-black opacity-80 border-2 w-screen h-auto sm:w-[40vw] sm:h-[10vh] rounded-lg flex items-center justify-center  text-primary hover:bg-gray-200 hover:text-black px-4 py-2 ':
         game,
