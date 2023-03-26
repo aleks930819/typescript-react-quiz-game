@@ -1,6 +1,10 @@
 import React from 'react';
 import Button from '../UI/Button';
 import { GameContext, GameContextProps } from '../../context/GameContext';
+import useSound from 'use-sound';
+
+import correctSound from '../../assets/success.mp3';
+import incorrectSound from '../../assets/fail.mp3';
 
 interface QuestionsBoxProps {
   answers: string[];
@@ -14,6 +18,9 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   const { setScore, setGameOver, setCurrentQuestion } = React.useContext(
     GameContext
   ) as GameContextProps;
+
+  const [playCorrect] = useSound(correctSound);
+  const [playIncorrect] = useSound(incorrectSound);
 
   const correctAnswerHandler = () => {
     setTimeout(() => {
@@ -31,8 +38,10 @@ const QuestionsBox: React.FC<QuestionsBoxProps> = ({
   const answerHandler = (answer: string) => {
     if (answer === correctAnswer) {
       correctAnswerHandler();
+      playCorrect();
     } else {
       incorrectAnswerHandler();
+      playIncorrect();
     }
   };
 
