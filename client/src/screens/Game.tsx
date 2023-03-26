@@ -16,12 +16,12 @@ const Game: React.FC = () => {
     data: questions,
     loading,
     error,
-    refetch,
+    fetchData,
   } = useFetch('http://localhost:3030/api/v1/questions');
 
   useEffect(() => {
-    refetch();
-  }, [refetch]);
+    fetchData();
+  }, [fetchData]);
 
   if (loading) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;

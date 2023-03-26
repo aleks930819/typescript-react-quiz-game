@@ -12,7 +12,7 @@ interface UseFetchResult {
   data: AnswerObject[];
   loading: boolean;
   error: Error | null;
-  refetch: () => void;
+  fetchData: () => Promise<AnswerObject | undefined>;
 }
 
 const useFetch = (url: string): UseFetchResult => {
@@ -40,11 +40,7 @@ const useFetch = (url: string): UseFetchResult => {
     }
   }, [url]);
 
-  const refetch = useCallback(() => {
-    fetchData();
-  }, [fetchData]);
-
-  return { data, loading, error, refetch };
+  return { data, loading, error, fetchData };
 };
 
 export default useFetch;

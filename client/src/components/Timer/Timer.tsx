@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
-import { GameContext, GameContextProps } from '../../context/GameContext';
 import useTimer from '../../hooks/useTimer';
 
 const Timer = () => {

@@ -16,7 +16,9 @@ export const questionsRouter = express.Router();
  * Controller Definitions
  */
 
-// GET Questions
+//  @desc    Get all questions
+//  @route   GET /api/v1/questions
+//  @access  Public
 
 questionsRouter.get('/', async (req: Request, res: Response) => {
   try {
